@@ -1,11 +1,9 @@
-## Pascal Triangle
+# Pascal's Triangle
 
-### Description: Tech interview preparation:
+This project contains tasks for working with Pascal's triangle.
 
-- Given a size parameter, write a function that returns a list of lists of integers representing the Pascal’s triangle of size n
-- Prototype: def pascal_triangle(n):
-- Returns an empty list if n <= 0
-- You can assume n will be always an integer
-- You are not allowed to import any module
+## Tasks To Complete
 
-
++ [x] 0. **Pascal's Triangle**<br/>[0-pascal_triangle.py](0-pascal_triangle.py) contains a function `def pascal_triangle(n):` that returns a list of lists of integers representing the Pascal's triangle of `n`:
+  + Returns an empty list if `n <= 0`.
+  + You can assume `n` will be always an integer.

@@ -1,29 +1,25 @@
 #!/usr/bin/python3
-""" Make change
+"""Change making module.
 """
 
 
-from typing import List
-
-
-def makeChange(coins: List[int], total: int) -> int:
-    """ make Change
-
-    Args:
-        coins (List[int]): List of coins
-        total (int): Total coin
-
-    Returns:
-        int: fewest coin combination to make the total coin
+def makeChange(coins, total):
+    """Determines the fewest number of coins needed to meet a given
+    amount total when given a pile of coins of different values.
     """
     if total <= 0:
         return 0
-    coins.sort(reverse=True)
-    fewest_coins = 0
-    for coin in coins:
-        while total >= coin:
-            total -= coin
-            fewest_coins += 1
-    if total == 0:
-        return fewest_coins
-    return -1
+    rem = total
+    coins_count = 0
+    coin_idx = 0
+    sorted_coins = sorted(coins, reverse=True)
+    n = len(coins)
+    while rem > 0:
+        if coin_idx >= n:
+            return -1
+        if rem - sorted_coins[coin_idx] >= 0:
+            rem -= sorted_coins[coin_idx]
+            coins_count += 1
+        else:
+            coin_idx += 1
+    return coins_count

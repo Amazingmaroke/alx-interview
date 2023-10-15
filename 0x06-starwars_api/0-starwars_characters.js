@@ -1,46 +1,25 @@
 #!/usr/bin/node
-/* Fetch Data from starwars API */
+const request = require('request');
+const API_URL = 'https://swapi-api.hbtn.io/api';
 
-const req = require('request');
-const args = process.argv.slice(2);
+if (process.argv.length > 2) {
+  request(`${API_URL}/films/${process.argv[2]}/`, (err, _, body) => {
+    if (err) {
+      console.log(err);
+    }
+    const charactersURL = JSON.parse(body).characters;
+    const charactersName = charactersURL.map(
+      url => new Promise((resolve, reject) => {
+        request(url, (promiseErr, __, charactersReqBody) => {
+          if (promiseErr) {
+            reject(promiseErr);
+          }
+          resolve(JSON.parse(charactersReqBody).name);
+        });
+      }));
 
-const fetchData = (url) => {
-  const promise = new Promise((resolve, reject) => {
-    // send get request
-    req.get(url, (error, response, body) => {
-      if (error) {
-        reject(error);
-      } else if (response.statusCode !== 200) {
-        // console.log(`${response.statusCode}`);
-        reject(new Error('Something Went Wrong!, Try Again'));
-      } else {
-        resolve(JSON.parse(body));
-      }
-    });
+    Promise.all(charactersName)
+      .then(names => console.log(names.join('\n')))
+      .catch(allErr => console.log(allErr));
   });
-  return promise;
-};
-
-const fetchStarWarsMovies = async (movieID) => {
-  try {
-    const apiUrl = `https://swapi-api.hbtn.io/api/films/${movieID}/`;
-    const data = await fetchData(apiUrl);
-    const characters = data.characters;
-    // console.log(characters)
-    // loop through the characters array to get their names
-    const charactersName = await Promise.all(
-      characters.map(async (url) => {
-        const character = await fetchData(url);
-        return character.name;
-      })
-    );
-
-    // console.log(charactersName);
-    charactersName.forEach((name) => console.log(`${name}`));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const movieID = args[0];
-fetchStarWarsMovies(movieID);
+}

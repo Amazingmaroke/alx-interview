@@ -1,32 +1,25 @@
 #!/usr/bin/python3
-"""island perimeter
+"""Island perimeter computing module.
 """
 
 
-def island_perimeter(grid: list) -> int:
-    """ Island Perimetr
-
-    Args:
-        grid (List[list]): island grid
-
-    Returns:
-        int: island perimeter
+def island_perimeter(grid):
+    """Computes the perimeter of an island with no lakes.
     """
-    # initialize the perimeter
-    perimeter: int = 0
-    # loop through the grid
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
-            # check if its a land
-            if grid[i][j] == 1:
-                # calculate the perimeter which is sum of all 4 sides
-                # i.e 1+1+1+1 = 4
-                perimeter += 4
-                # check if the horizontal neighbour share sides
-                if i > 0 and grid[i-1][j] == 1:
-                    # they share sides, hence subtract 2 from the perimeter
-                    perimeter -= 2
-                # if the vertical neighbour share sides
-                if j > 0 and grid[i][j - 1] == 1:
-                    perimeter -= 2
+    perimeter = 0
+    if type(grid) != list:
+        return 0
+    n = len(grid)
+    for i, row in enumerate(grid):
+        m = len(row)
+        for j, cell in enumerate(row):
+            if cell == 0:
+                continue
+            edges = (
+                i == 0 or (len(grid[i - 1]) > j and grid[i - 1][j] == 0),
+                j == m - 1 or (m > j + 1 and row[j + 1] == 0),
+                i == n - 1 or (len(grid[i + 1]) > j and grid[i + 1][j] == 0),
+                j == 0 or row[j - 1] == 0,
+            )
+            perimeter += sum(edges)
     return perimeter

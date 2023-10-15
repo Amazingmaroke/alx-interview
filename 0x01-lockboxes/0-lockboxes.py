@@ -1,33 +1,21 @@
 #!/usr/bin/python3
-""" Lockboxes interview coding challenge """
+'''A module for working with lockboxes.
+'''
 
-from typing import List
 
-
-def canUnlockAll(boxes: List[list]) -> bool:
-    """ checks if the all boxes can be unlocked
-
-    Args:
-        boxes (List[list]): List of boxes
-
-    Returns:
-        bool: True if all boxes can be unlocked else fals
-    """
-    unlocked_boxes = {}
-    try:
-        empty_index = boxes.index([])
-        boxes[empty_index] = [0]
-    except Exception:
-        pass
-    box_numbers = [x for x in range(len(boxes))]
-    # print(some)
-    unlocked_boxes[0] = 'unlocked'
-    for i in range(len(boxes) - 1):
-        for k in range(len(boxes[i])):
-            if boxes[i][k] in box_numbers:
-                unlocked_boxes[boxes[i][k]] = 'unlocked'
-
-    opened = unlocked_boxes.values()
-    if len(opened) != len(boxes):
-        return False
-    return True
+def canUnlockAll(boxes):
+    '''Checks if all the boxes in a list of boxes containing the keys
+    (indices) to other boxes can be unlocked given that the first
+    box is unlocked.
+    '''
+    n = len(boxes)
+    seen_boxes = set([0])
+    unseen_boxes = set(boxes[0]).difference(set([0]))
+    while len(unseen_boxes) > 0:
+        boxIdx = unseen_boxes.pop()
+        if not boxIdx or boxIdx >= n or boxIdx < 0:
+            continue
+        if boxIdx not in seen_boxes:
+            unseen_boxes = unseen_boxes.union(boxes[boxIdx])
+            seen_boxes.add(boxIdx)
+    return n == len(seen_boxes)
