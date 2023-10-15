@@ -1,31 +1,29 @@
 #!/usr/bin/python3
-
+"""Lockboxes Contains method that finds the keys to
+open other lockboxes
 """
-This module contains the solution to the
-Inteview question of lockboxes
-"""
+def canUnlockAll(boxes):
+    unlocked_boxes = [0]  # Start with box 0, which is initially unlocked
+    index = 0
 
-from typing import List
+    while index < len(unlocked_boxes):
+        box_keys = boxes[unlocked_boxes[index]]
+        # print(box_keys)
+        for key in box_keys:
+            print(key)
+            if key not in unlocked_boxes:
+                unlocked_boxes.append(key)
 
+        index += 1
 
-def canUnlockAll(boxes: List[List]) -> bool:
-    """
-    Determines if all the boxes can be opened.
+    return len(unlocked_boxes) == len(boxes)
 
-    Args:
-        boxes (list): A list of lists representing box and keys
-    Returns:
-        bool: True if all the boxes can be opened, False otherwise.
-    """
-    if not isinstance(boxes, list):
-        raise TypeError('Boxes should be a list')
+# Example usage
+boxes1 = [[1], [2], [3], [4], []]
+print(canUnlockAll(boxes1))  # Output: True
 
-    key_list = [0]
-    for key in key_list:
-        for j in boxes[key]:
-            if j not in key_list and j < len(boxes):
-                key_list.append(j)
-    for i in range(len(boxes)):
-        if i not in key_list:
-            return False
-    return True
+boxes2 = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
+print(canUnlockAll(boxes2))  # Output: True
+
+boxes3 = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
+print(canUnlockAll(boxes3))  # Output: False

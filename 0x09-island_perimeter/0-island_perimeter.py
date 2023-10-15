@@ -1,32 +1,37 @@
 #!/usr/bin/python3
 
 """
-Island perimeter
+Island Perimeter
 """
 
+# from typing import List
 
-def island_perimeter(grid):
-    """Calculate the perimeter of the island in the grid.
 
-    Args:
-        grid (list[list[int]]): A 2D grid representing the island.
-
-    Returns:
-        int: The perimeter of the island.
+def island_perimeter(grid: list) -> int:
     """
+    Island Perimeter
+    Args:
+        grid: List of ints
+    Returns:
+        The perimeter
+    """
+    perimeter = 0
     num_rows = len(grid)
     num_cols = len(grid[0])
-    perimeter = 0
     for row in range(num_rows):
         for col in range(num_cols):
-            if grid[row][col] == 1:
-                perimeter += 4  # Start with 4 sides
+            if grid[row][col] == 1:  # Check if the current cell is land
+                # Check the top neighbor
+                if row - 1 < 0 or grid[row - 1][col] == 0:
+                    perimeter += 1
+                # Check the bottom neighbor
+                if row + 1 >= num_rows or grid[row + 1][col] == 0:
+                    perimeter += 1
+                # Check the left neighbor
+                if col - 1 < 0 or grid[row][col - 1] == 0:
+                    perimeter += 1
+                # Check the right neighbor
+                if col + 1 >= num_cols or grid[row][col + 1] == 0:
+                    perimeter += 1
 
-                # Check left neighbor
-                if col > 0 and grid[row][col - 1] == 1:
-                    perimeter -= 2
-
-                # Check above neighbor
-                if row > 0 and grid[row - 1][col] == 1:
-                    perimeter -= 2
     return perimeter

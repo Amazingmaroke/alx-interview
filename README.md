@@ -1,31 +1,20 @@
+## ALX-Interview
 
-![img](https://assets.imaginablefutures.com/media/images/ALX_Logo.max-200x150.
-png)
+- [0x00-pascal_triangle](./0x00-pascal_triangle)
 
-![technical interview](https://media4.giphy.com/media/14bDMRUYVrzOIo/200.webp?cid=ecf05e47u03qgit7rb1j56izztal9c6b5roh0xgd68oeann8&ep=v1_gifs_search&rid=200.webp&ct=g)
+- [0x01-lockboxes](./0x01-lockboxes)
 
-## ALX Technical Intervew Prep projects
+- [0x03-minimum_operations](./0x02-minimum_operations)
 
-This repo contains mock technical interview questions and sessions during my Specialization at [ALX](https://www.alxafrica.com)
+- [0x04-utf8_validation](./0x04-utf8_validation)
 
-## Interview Rounds
+- [0x05-nqueens](./0x05-nqueens)
 
-[Round - 1](./0x00-pascal_triangle): Pascal Triangle
+- [0x06-starwars-api](./0x06-starwars_api)
 
-[Round - 2](./0x01-lockboxes): Lockboxes
+- [0x07-rotate_2d_matrix
+](./0x07-rotate_2d_matrix)
 
-[Round - 3](./0x03-log_parsing): Log parsing
+- [0x08-making_change](./0x08-making_change)
 
-[Round - 4](./0x04-utf8_validation): UTF-8 Validation
-
-[Round - 5](./0x05-nqueens): N-Queens
-
-[Round - 6](./0x06-starwars_api): Starwars API
-
-[Round - 7 ](./0x07-rotate_2d_matrix): Rotate a 2D matrix
-
-[Round - 8](./0x08-making_change): Making Change
-
-[Round - 9 ](./0x09-island_perimeter): Island Perimeter
-
-[Round - 10](0x0A-primegame): Prime Game
+- [0x09-island_perimeter](./0x09-island_perimeter)

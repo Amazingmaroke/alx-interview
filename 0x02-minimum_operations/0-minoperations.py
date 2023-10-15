@@ -1,29 +1,34 @@
 #!/usr/bin/python3
-
-
-"""
-Module for the   third round interview question
-Minimum number of operations
-"""
+""" Minimum operations interview coding challenge """
 
 
 def minOperations(n: int) -> int:
-    """
-    Determine the minimum opeartions to run
+    """ Calculates the minimum Operations
+
     Args:
-        n (int):
+        n (int): number of characters to copy and paste
+
     Returns:
-        Returns an int
+        int: Minimum number of operations needed to result in exactly n H
     """
-    if not isinstance(n, int):
-        raise TypeError('Expected an integer')
-    if n < 2:
+    if n <= 1:
         return 0
-    operations, root = 0, 2
-    while root <= n:
-        if n % root == 0:
-            operations += root
-            n = n / root
-            root -= 1
-        root += 1
-    return operations
+
+    clip = 0
+    ops = 0
+    char_len = 1
+
+    while char_len < n:
+        # if char_len is a factor of n do copy and paste
+        if n % char_len == 0:
+            # add copy ops
+            ops += 1
+            print(ops)
+            # save the number of characters in the clipboard
+            clip = char_len
+            print(clip)
+        # else just paste whats already in the clip
+        char_len += clip
+        # add paste ops
+        ops += 1
+    return ops

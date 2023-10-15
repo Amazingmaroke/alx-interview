@@ -1,58 +1,42 @@
 #!/usr/bin/python3
 
-"""
-This module holds a simple function to
-determine if a given dataset represents
-a valid utf-8 encoding
-"""
+""" This module contains a function that validates utf-8"""
+
+from typing import List, Union
 
 
-def validUTF8(data):
+# def validUTF8(data: List[int]) -> Union[bool, List[str]]:
+#     """
+#     Validates Utf-8
+#     """
+#     for char in data:
+#         if char in range(0, 256):
+#             try:
+#                 decoded_char = bytes([char]).decode("utf-8")
+#             except IndexError and UnicodeError:
+#                 return False
+#         else:
+#             return False
+#     return True
+
+def validUTF8(data) -> bool:
     """
-    Check to see if data is valid UTF-8
-    Args:
-        data (bytes): data to check
-    Returns:
-        returns a bool
+    Returns True if data is a valid UTF-8 encoding, else return False
+    :param data:
     """
-    def is_continuation(byte):
-        """
-        is it a continuation?
-        Args:
-            byte (byte)
-        Returns:
-            returns a bool
-        """
-        return (byte & 0b11000000) == 0b10000000
-
-    def get_bytes_to_follow(start_byte):
-        """
-        Get the bytes to follow
-        Args:
-            start_byte (byte): Where to start
-        Returns:
-            returns an int
-        """
-        if (start_byte & 0b10000000) == 0b00000000:
-            return 0
-        elif (start_byte & 0b11100000) == 0b11000000:
-            return 1
-        elif (start_byte & 0b11110000) == 0b11100000:
-            return 2
-        elif (start_byte & 0b11111000) == 0b11110000:
-            return 3
-        return -1
-    bytes_to_follow = 0
-
+    num_bytes = 0
     for byte in data:
-        if bytes_to_follow == 0:
-            bytes_to_follow = get_bytes_to_follow(byte)
-            if bytes_to_follow == -1:
-                return False
-            elif bytes_to_follow == 0:
+        mask = 1 << 7
+        if not num_bytes:
+            while byte & mask:
+                num_bytes += 1
+                mask >>= 1
+            if not num_bytes:
                 continue
-        else:
-            if not is_continuation(byte):
+            if num_bytes == 1 or num_bytes > 4:
                 return False
-            bytes_to_follow -= 1
-    return bytes_to_follow == 0
+        else:
+            if byte >> 6 != 0b10:
+                return False
+        num_bytes -= 1
+    return num_bytes == 0

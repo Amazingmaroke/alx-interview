@@ -1,23 +1,28 @@
 #!/usr/bin/python3
 
-"""
-rotate an nxn matrix
-90 degrees to the right
-in-place. No returning anything
-"""
+"""Contains a function that rotates a matrix 90 degrees clockwise"""
 
 
 def rotate_2d_matrix(matrix):
     """
-    rotate a 2d (n x n matrix)
+    Rotate 2d matrix
     Args:
-        matrix (list): A list of list
+        matrix:
+        matrix
+    Returns:
+        Rotated matrix
     """
-    n = len(matrix)
-    # Transpose the matrix in-place
-    for i in range(n):
-        for j in range(i, n):
-            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
-    for i in range(n):
-        matrix[i] = matrix[i][::-1]
+    duplicated_matrix = [row[:] for row in matrix]
+    matrix_size = len(matrix)
+    print(matrix_size)
+    b = -1
+    # iterate through each row in the duplicated matrix
+    for row in duplicated_matrix:
+        # Iterate through each column in the original matrix
+        for a in range(matrix_size):
+            # update the values of the original matrix with the values
+            # from the copied matrix
+            matrix[a][b] = row[a]
+        # Move to the previous column for the next iteration
+        b -= 1
