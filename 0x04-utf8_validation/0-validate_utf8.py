@@ -1,40 +1,58 @@
 #!/usr/bin/python3
-""" UTF-8 Validation """
+
+"""
+This module holds a simple function to
+determine if a given dataset represents
+a valid utf-8 encoding
+"""
 
 
 def validUTF8(data):
     """
-    Method that determines if a given data set represents a valid
-    UTF-8 encoding.
+    Check to see if data is valid UTF-8
+    Args:
+        data (bytes): data to check
+    Returns:
+        returns a bool
     """
-    number_bytes = 0
+    def is_continuation(byte):
+        """
+        is it a continuation?
+        Args:
+            byte (byte)
+        Returns:
+            returns a bool
+        """
+        return (byte & 0b11000000) == 0b10000000
 
-    mask_1 = 1 << 7
-    mask_2 = 1 << 6
+    def get_bytes_to_follow(start_byte):
+        """
+        Get the bytes to follow
+        Args:
+            start_byte (byte): Where to start
+        Returns:
+            returns an int
+        """
+        if (start_byte & 0b10000000) == 0b00000000:
+            return 0
+        elif (start_byte & 0b11100000) == 0b11000000:
+            return 1
+        elif (start_byte & 0b11110000) == 0b11100000:
+            return 2
+        elif (start_byte & 0b11111000) == 0b11110000:
+            return 3
+        return -1
+    bytes_to_follow = 0
 
-    for i in data:
-
-        mask_byte = 1 << 7
-
-        if number_bytes == 0:
-
-            while mask_byte & i:
-                number_bytes += 1
-                mask_byte = mask_byte >> 1
-
-            if number_bytes == 0:
-                continue
-
-            if number_bytes == 1 or number_bytes > 4:
+    for byte in data:
+        if bytes_to_follow == 0:
+            bytes_to_follow = get_bytes_to_follow(byte)
+            if bytes_to_follow == -1:
                 return False
-
+            elif bytes_to_follow == 0:
+                continue
         else:
-            if not (i & mask_1 and not (i & mask_2)):
-                    return False
-
-        number_bytes -= 1
-
-    if number_bytes == 0:
-        return True
-
-    return False
+            if not is_continuation(byte):
+                return False
+            bytes_to_follow -= 1
+    return bytes_to_follow == 0

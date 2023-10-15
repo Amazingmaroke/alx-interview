@@ -15,8 +15,8 @@ function getCharacterEndPoints(filmID) {
     });
   });
 }
-const starWarID = process.argv[2]
-getCharacterEndPoints(starWarID)
+
+getCharacterEndPoints(3)
   .then((userEndPoints) => {
     const requests = userEndPoints.map((element) => {
       return new Promise((resolve, reject) => {

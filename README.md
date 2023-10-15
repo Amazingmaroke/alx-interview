@@ -1,31 +1,31 @@
-# Holberton School Interview
-![Holberton logo](https://www.alxafrica.com/wp-content/uploads/2022/01/header-logo.png)
-> Interview - Preparation
 
-## Description:bulb:
-Interview Algorithm practice
+![img](https://assets.imaginablefutures.com/media/images/ALX_Logo.max-200x150.
+png)
 
-* Whiteboard
-* Data Structures
-* Time complexity (Big O notation)
-* Searching algorithms
+![technical interview](https://media4.giphy.com/media/14bDMRUYVrzOIo/200.webp?cid=ecf05e47u03qgit7rb1j56izztal9c6b5roh0xgd68oeann8&ep=v1_gifs_search&rid=200.webp&ct=g)
 
-## Technologies & Tools:computer:
+## ALX Technical Intervew Prep projects
 
-![Git](https://img.shields.io/badge/≡-Git-F05032?logo=git&style=flat-square&labelColor=282828)
-![Ubuntu](https://img.shields.io/badge/≡-Ubuntu-E95420?&style=flat-square&logo=Ubuntu&labelColor=282828)
-![GNU_Bash](https://img.shields.io/badge/≡-GNU_Bash-4EAA25?logo=GNU-Bash&style=flat-square&labelColor=282828)
-![Vim](https://img.shields.io/badge/≡-Vim-019733?logo=Vim&style=flat-square&logoColor=019733&labelColor=282828)
-![Pop!_OS](https://img.shields.io/badge/≡-Pop!_OS-48B9C7?logo=Pop_OS&style=flat-square&labelColor=282828)
-![VS_Code](https://img.shields.io/badge/≡-VS_Code-007ACC?logo=visual-studio-code&style=flat-square&logoColor=007ACC&labelColor=282828)
-![Python](https://img.shields.io/badge/≡-Python-3776AB?logo=Python&style=flat-square&labelColor=282828)
-![C](https://img.shields.io/badge/≡-Language-A8B9CC?logo=C&style=flat-square&labelColor=282828)
-![GitHub](https://img.shields.io/badge/≡-GitHub-181717?logo=GitHub&style=flat-square&labelColor=282828)
+This repo contains mock technical interview questions and sessions during my Specialization at [ALX](https://www.alxafrica.com)
 
----
+## Interview Rounds
 
-## Author
-* **Joseph Mahiuha** (@Mahiuha) - [<img src="https://img.shields.io/badge/Portfolio-20d6fe.svg?&style=plastic"/>](https://mahiuha.github.io/josephmahiuha/)
-  [<img src="https://img.shields.io/badge/Twitter-1DA1F2.svg?&style=plastic&logo=twitter&logoColor=white"/>](https://twitter.com/Joseph_Mahiuha)
-  [<img src="https://img.shields.io/badge/Linkedin-0A66C2.svg?&style=plastic&logo=linkedin&logoColor=white"/>](https://www.linkedin.com/in/joseph-mahiuha-498a52162/)
-  [<img src="https://img.shields.io/badge/GitHub-181717.svg?&style=plastic&logo=github&logoColor=white"/>](https://github.com/Mahiuha)
+[Round - 1](./0x00-pascal_triangle): Pascal Triangle
+
+[Round - 2](./0x01-lockboxes): Lockboxes
+
+[Round - 3](./0x03-log_parsing): Log parsing
+
+[Round - 4](./0x04-utf8_validation): UTF-8 Validation
+
+[Round - 5](./0x05-nqueens): N-Queens
+
+[Round - 6](./0x06-starwars_api): Starwars API
+
+[Round - 7 ](./0x07-rotate_2d_matrix): Rotate a 2D matrix
+
+[Round - 8](./0x08-making_change): Making Change
+
+[Round - 9 ](./0x09-island_perimeter): Island Perimeter
+
+[Round - 10](0x0A-primegame): Prime Game

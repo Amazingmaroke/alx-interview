@@ -1,26 +1,23 @@
 #!/usr/bin/python3
+
 """
-Rotate 2D Matrix
+rotate an nxn matrix
+90 degrees to the right
+in-place. No returning anything
 """
 
 
 def rotate_2d_matrix(matrix):
-    """rotate two dimension matrix 90 degrees clockwise
+    """
+    rotate a 2d (n x n matrix)
     Args:
-        matrix (list[[list]]): a matrix
+        matrix (list): A list of list
     """
     n = len(matrix)
-    for i in range(int(n / 2)):
-        y = (n - i - 1)
-        for j in range(i, y):
-            x = (n - 1 - j)
-            # current number
-            tmp = matrix[i][j]
-            # change top for left
-            matrix[i][j] = matrix[x][i]
-            # change left for bottom
-            matrix[x][i] = matrix[y][x]
-            # change bottom for right
-            matrix[y][x] = matrix[j][y]
-            # change right for top
-            matrix[j][y] = tmp
+    # Transpose the matrix in-place
+    for i in range(n):
+        for j in range(i, n):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+    for i in range(n):
+        matrix[i] = matrix[i][::-1]
